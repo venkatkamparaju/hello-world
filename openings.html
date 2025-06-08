@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Open Positions</title>
+    <!-- Include Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS configuration for custom colors and fonts
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Set Inter as the default sans-serif font
+                    },
+                    colors: {
+                        primary: {
+                            500: '#0D9488', // Teal-600 for primary actions/accents
+                            600: '#0F766E', // Teal-700 for hover states
+                            700: '#047857', // Deeper Teal for bolder elements
+                        },
+                        neutral: {
+                            50: '#F9FAFB',  // Very light gray
+                            100: '#F3F4F6', // Light background
+                            200: '#E5E7EB', // Lighter border/separator
+                            300: '#D1D5DB', // Standard border/separator
+                            700: '#374151', // Darker text for code backgrounds
+                            800: '#1F2937', // Main body text color
+                            900: '#111827', // Very dark text/headings
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for code blocks and responsiveness not easily covered by Tailwind utility classes alone */
+        pre {
+            @apply p-4 rounded-lg overflow-x-auto;
+            background-color: theme('colors.neutral.700'); /* Apply neutral-700 from config */
+            color: theme('colors.neutral.100'); /* Apply neutral-100 from config */
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            @apply text-sm;
+        }
+        /* Responsive adjustments for the main content and sidebar */
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .main-content {
+                width: calc(100% - 20rem); /* Example: main content takes up remaining width */
+            }
+            .sidebar {
+                width: 20rem; /* Fixed width for sidebar on large screens */
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-neutral-50 text-neutral-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary-700">A-AI Systems</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="https://community.a-aisystems.in/" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Home</a>
+                <a href="https://community.a-aisystems.in/" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Blog</a>
+                <a href="https://community.a-aisystems.in/" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">About</a>
+                <a href="https://community.a-aisystems.in/" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Contact</a>
+                <a href="https://community.a-aisystems.in/openings.html" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Open Positions</a>
+            </nav>
+            <button class="md:hidden p-2 rounded-md hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8 lg:flex lg:space-x-8">
+        <!-- Blog Post Content -->
+        <article class="flex-grow bg-white p-6 rounded-lg shadow-md mb-8 lg:mb-0 main-content">
+            <h1 class="text-4xl font-bold text-neutral-900 mb-4 leading-tight">We are the leading provider of AI-based systems, offering cutting-edge solutions to our users. Our expertise and innovation set us apart in the industry.</h1>
+            <div class="flex items-center text-neutral-500 text-sm mb-6 space-x-2">
+
+                <span>&bull;</span>
+                <span>June 7, 2025</span>
+                <span>&bull;</span>
+                <span class="flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 21h.01M10 21h.01M13 21h.01M16 21h.01M19 21h.01M12 7h.01M12 21h.01M15 21h.01M18 21h.01M21 21h.01M12 4h.01M12 18h.01M12 15h.01M12 12h.01M12 9h.01"></path></svg>
+
+                </span>
+            </div>
+
+            <figure class="mb-6">
+                <img src="./images/hello1.jpg" alt="Conceptual image of LLM and RAG" class="w-full h-auto rounded-lg shadow-sm">
+
+            </figure>
+
+
+
+        </article>
+
+
+       
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-neutral-900 text-neutral-300 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 A-AI Systems Blog. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Privacy Policy</a>
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Terms of Service</a>
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
