@@ -1,101 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta name="generator" content="Hugo 0.48" />
-    <meta charset="utf-8">
-    <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AAI Systems</title>
-    <meta name="keywords" content="yeo">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="./css/spectre.css">
-    <link rel="stylesheet" href="./css/spectre-icons.css">
-    <link rel="stylesheet" href="./css/spectre-exp.css">
-    <link rel="stylesheet" href="./css/yeo.css">
-    <meta property="og:title" content="">
-    <meta property="og:url" content="">
-    <meta property="og:description" content="">
-    <meta property="og:site_name" content="">
-    <meta property="og:type" content="product">
-    <meta property="og:image" content="">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & RAG Applications Blog</title>
+    <!-- Include Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS configuration for custom colors and fonts
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Set Inter as the default sans-serif font
+                    },
+                    colors: {
+                        primary: {
+                            500: '#0D9488', // Teal-600 for primary actions/accents
+                            600: '#0F766E', // Teal-700 for hover states
+                            700: '#047857', // Deeper Teal for bolder elements
+                        },
+                        neutral: {
+                            50: '#F9FAFB',  // Very light gray
+                            100: '#F3F4F6', // Light background
+                            200: '#E5E7EB', // Lighter border/separator
+                            300: '#D1D5DB', // Standard border/separator
+                            700: '#374151', // Darker text for code backgrounds
+                            800: '#1F2937', // Main body text color
+                            900: '#111827', // Very dark text/headings
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for code blocks and responsiveness not easily covered by Tailwind utility classes alone */
+        pre {
+            @apply p-4 rounded-lg overflow-x-auto;
+            background-color: theme('colors.neutral.700'); /* Apply neutral-700 from config */
+            color: theme('colors.neutral.100'); /* Apply neutral-100 from config */
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            @apply text-sm;
+        }
+        /* Responsive adjustments for the main content and sidebar */
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .main-content {
+                width: calc(100% - 20rem); /* Example: main content takes up remaining width */
+            }
+            .sidebar {
+                width: 20rem; /* Fixed width for sidebar on large screens */
+            }
+        }
+    </style>
 </head>
+<body class="font-sans antialiased bg-neutral-50 text-neutral-800">
 
-<body>
-    <div class="yeo-slogan">
-        <div class="container yeo-header">
-            <div class="columns">
-                <div class="column col-12">
-                    <header class="navbar">
-                        <section class="navbar-section">
-                            <a class="navbar-brand logo" href="./">
-                                <span>AAI Systems</span>
-                            </a>
-                        </section>
-                        <section class="navbar-section hide-sm">
-                            <a class="btn btn-link" href="#we-do">Open Oportunities</a>                        
-                            
-                           
-                        </section>
-                    </header>
-                </div>
-            </div>
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary-700">A-AI Systems Blog</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Home</a>
+                <a href="#" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Blog</a>
+                <a href="#" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">About</a>
+                <a href="#" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Contact</a>
+                <a href="https://community.a-aisystems.in/openings.html" class="text-neutral-800 hover:text-primary-500 transition-colors duration-200">Open Positions</a>
+            </nav>
+            <button class="md:hidden p-2 rounded-md hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-        <div class="container slogan">
-            <div class="columns">
-                <div class="column col-7 col-sm-12">
-                    <div class="slogan-content">
-                        
-                        <p>We are the leading provider of AI-based systems, offering cutting-edge solutions to our users. Our expertise and innovation set us apart in the industry.</p>
-                       
+    </header>
 
-                    </div>
-                </div>
-                <div class="column col-5 hide-sm">
-                    <img class="slogan-img" src="./images/hello1.jpg" alt="">
-                </div>
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8 lg:flex lg:space-x-8">
+        <!-- Blog Post Content -->
+        <article class="flex-grow bg-white p-6 rounded-lg shadow-md mb-8 lg:mb-0 main-content">
+            <h1 class="text-4xl font-bold text-neutral-900 mb-4 leading-tight">LLM Models and RAG Applications: Step-by-Step Part II - Creating Context</h1>
+            <div class="flex items-center text-neutral-500 text-sm mb-6 space-x-2">
+
+                <span>&bull;</span>
+                <span>June 7, 2025</span>
+                <span>&bull;</span>
+                <span class="flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 21h.01M10 21h.01M13 21h.01M16 21h.01M19 21h.01M12 7h.01M12 21h.01M15 21h.01M18 21h.01M21 21h.01M12 4h.01M12 18h.01M12 15h.01M12 12h.01M12 9h.01"></path></svg>
+                    <span>Tags: <a href="#" class="text-primary-500 hover:underline">LLM</a>, <a href="#" class="text-primary-500 hover:underline">RAG</a>, <a href="#" class="text-primary-500 hover:underline">AI</a></span>
+                </span>
+            </div>
+
+            <figure class="mb-6">
+                <img src="https://placehold.co/800x450/E0E7FF/3730A3?text=LLM+RAG+Context" alt="Conceptual image of LLM and RAG" class="w-full h-auto rounded-lg shadow-sm">
+                <figcaption class="text-center text-sm text-neutral-500 mt-2">Figure 1: Visualizing the context creation process for RAG applications.</figcaption>
+            </figure>
+
+            <section class="prose max-w-none">
+                <p class="mb-4 leading-relaxed">Welcome back to our series on LLM models and RAG applications! In <a href="#" class="text-primary-500 hover:underline font-medium">Part I</a>, we introduced the foundational concepts of Large Language Models (LLMs) and the necessity of Retrieval-Augmented Generation (RAG) for grounding LLMs in up-to-date and domain-specific information. Today, we delve into the crucial step of creating the context that our LLMs will leverage.</p>
+
+                <h2 class="text-3xl font-semibold text-neutral-900 mb-3 mt-8">What is "Context" in RAG?</h2>
+                <p class="mb-4 leading-relaxed">In the realm of RAG, "context" refers to the relevant pieces of information retrieved from a knowledge base that are then fed into the LLM alongside the user's query. This retrieved context helps the LLM generate more accurate, relevant, and grounded responses, mitigating issues like hallucination and out-of-date information.</p>
+
+                <h3 class="text-2xl font-semibold text-neutral-900 mb-3 mt-6">The Importance of Quality Context</h3>
+                <p class="mb-4 leading-relaxed">The quality of the retrieved context directly impacts the quality of the LLM's output. Poorly retrieved or irrelevant context can lead to misleading or incorrect answers. Therefore, strategies for effective context creation are paramount.</p>
+
+                <h2 class="text-3xl font-semibold text-neutral-900 mb-3 mt-8">Step 1: Data Ingestion and Preprocessing</h2>
+                <p class="mb-4 leading-relaxed">Before we can retrieve information, we need to ingest our raw data into a format that's searchable and optimizable for RAG. This typically involves:</p>
+                <ol class="list-decimal list-inside pl-4 mb-4 space-y-2 leading-relaxed">
+                    <li><strong class="font-medium">Source Identification:</strong> Identify all sources of information (documents, databases, web pages, etc.).</li>
+                    <li><strong class="font-medium">Data Extraction:</strong> Extract raw text from various formats (PDFs, HTML, Markdown).</li>
+                    <li><strong class="font-medium">Cleaning and Normalization:</strong> Remove irrelevant parts, standardize formatting, and handle inconsistencies.</li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold text-neutral-900 mb-3 mt-6">Example: Preprocessing a Document</h3>
+                <p class="mb-4 leading-relaxed">Consider a PDF document containing technical specifications. We would extract the text, remove headers/footers, and possibly convert bullet points into full sentences for better parsing.</p>
+
+                <h2 class="text-3xl font-semibold text-neutral-900 mb-3 mt-8">Step 2: Chunking Strategies</h2>
+                <p class="mb-4 leading-relaxed">LLMs have token limits, meaning they can only process a certain amount of text at a time. Therefore, we cannot feed entire documents as context. We need to break down documents into smaller, manageable "chunks."</p>
+
+                <p class="mb-4 leading-relaxed">Common chunking strategies include:</p>
+                <ul class="list-disc list-inside pl-4 mb-4 space-y-2 leading-relaxed">
+                    <li><strong class="font-medium">Fixed-Size Chunking:</strong> Splitting text into chunks of a predefined number of tokens or characters, often with an overlap to maintain context across boundaries.</li>
+                    <li><strong class="font-medium">Semantic Chunking:</strong> Attempting to split text based on logical sections (e.g., paragraphs, sections, subheadings) to ensure each chunk represents a coherent thought or topic.</li>
+                    <li><strong class="font-medium">Sentence-based Chunking:</strong> Treating each sentence or a group of sentences as a chunk.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-neutral-900 mb-3 mt-6">Code Example: Basic Fixed-Size Chunking</h3>
+                <p class="mb-4 leading-relaxed">Here's a simplified Python example demonstrating fixed-size chunking with overlap:</p>
+                <pre><code class="language-python">
+def chunk_text(text, chunk_size, overlap):
+    chunks = []
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunks.append(text[start:end])
+        start += (chunk_size - overlap)
+        if start >= len(text) and len(text) > 0 and len(chunks[-1]) < chunk_size and len(text) - (start - (chunk_size - overlap)) > 0:
+            # Handle the last chunk if it's smaller and there's remaining text
+            last_chunk_start = len(text) - chunk_size
+            if last_chunk_start < 0: last_chunk_start = 0
+            chunks[-1] = text[last_chunk_start:] # Re-add the last chunk to ensure it contains full text
+            break
+    return chunks
+
+sample_text = "This is a long piece of text that needs to be broken into smaller parts for processing by an LLM. Chunking is a crucial step in preparing data for RAG applications. Overlap helps maintain context across boundaries."
+chunks = chunk_text(sample_text, chunk_size=50, overlap=10)
+for i, chunk in enumerate(chunks):
+    print(f"Chunk {i+1}: {chunk}")
+                </code></pre>
+                <p class="mb-4 leading-relaxed">This example illustrates a basic approach. In real-world scenarios, you'd use more sophisticated libraries like LangChain or LlamaIndex for chunking, which offer more robust strategies and integrations.</p>
+
+                <h2 class="text-3xl font-semibold text-neutral-900 mb-3 mt-8">Step 3: Embedding and Vector Databases</h2>
+                <p class="mb-4 leading-relaxed">Once we have our chunks, the next step is to convert them into numerical representations called "embeddings." Embeddings are dense vector representations that capture the semantic meaning of the text. Chunks with similar meanings will have similar embedding vectors.</p>
+
+                <p class="mb-4 leading-relaxed">These embeddings are then stored in a specialized database known as a "vector database" (e.g., Pinecone, Weaviate, ChromaDB, Milvus). Vector databases are optimized for efficient similarity search, allowing us to quickly find chunks semantically similar to a given query.</p>
+
+                <h3 class="text-2xl font-semibold text-neutral-900 mb-3 mt-6">The RAG Flow with Embeddings</h3>
+                <ul class="list-disc list-inside pl-4 mb-4 space-y-2 leading-relaxed">
+                    <li>When a user poses a query, that query is also converted into an embedding.</li>
+                    <li>This query embedding is used to perform a similarity search in the vector database.</li>
+                    <li>The top 'k' most similar chunks are retrieved.</li>
+                    <li>These retrieved chunks (the context) are then passed to the LLM along with the original query.</li>
+                </ul>
+
+                <h2 class="text-3xl font-semibold text-neutral-900 mb-3 mt-8">Conclusion of Part II</h2>
+                <p class="mb-4 leading-relaxed">In this part, we've covered the essential steps of preparing your data to create effective context for RAG applications: data ingestion, preprocessing, intelligent chunking, and the critical role of embeddings and vector databases. These foundational steps are vital for building robust and accurate LLM-powered applications.</p>
+                <p class="mb-4 leading-relaxed">Stay tuned for <a href="#" class="text-primary-500 hover:underline font-medium">Part III</a>, where we will explore advanced retrieval techniques and strategies for optimizing the RAG pipeline.</p>
+            </section>
+
+            <!-- New Section: Open Positions -->
+        <section class="prose max-w-none">
+            <h2 class="text-3xl font-bold text-neutral-900 mb-6 border-b border-neutral-200 pb-2">Open Positions</h2>
+            <p class="mb-6 leading-relaxed text-neutral-700">
+                We're always looking for passionate and talented individuals to join our growing team. If you're eager to make an impact in the world of AI, explore our current openings below.
+            </p>
+
+            <!-- Job Opening: Trainee AI Engineer -->
+            <div class="mb-8 border-b border-neutral-200 pb-6 last:border-b-0">
+                <h3 class="text-2xl font-semibold text-primary-700 mb-2">Trainee AI Engineer</h3>
+                <p class="mb-4 leading-relaxed text-neutral-700">
+                    Are you a recent graduate or an aspiring AI enthusiast eager to kickstart your career in artificial intelligence? We are seeking highly motivated Trainee AI Engineers to join our innovative team and contribute to cutting-edge AI projects. This is an excellent opportunity to learn from experienced professionals and grow your skills in a dynamic environment.
+                </p>
+
+                <h4 class="text-xl font-medium text-neutral-800 mb-2">Key Responsibilities:</h4>
+                <ul class="list-disc list-inside pl-4 mb-4 space-y-1 text-neutral-700 leading-relaxed">
+                    <li>Assist in the collection, cleaning, and preprocessing of large datasets for AI/ML model training.</li>
+                    <li>Support the development, testing, and deployment of various AI and machine learning models under guidance.</li>
+                    <li>Participate in model evaluation, debugging, and performance optimization.</li>
+                    <li>Collaborate with senior AI engineers and researchers on different project phases, from ideation to implementation.</li>
+                    <li>Stay updated with the latest advancements in AI, machine learning, and relevant technologies through continuous learning.</li>
+                    <li>Contribute to documentation and knowledge sharing within the team.</li>
+                </ul>
+
+                <h4 class="text-xl font-medium text-neutral-800 mb-2">Qualifications:</h4>
+                <ul class="list-disc list-inside pl-4 mb-4 space-y-1 text-neutral-700 leading-relaxed">
+                    <li>Bachelor's degree in Computer Science, Artificial Intelligence, Machine Learning, Electrical Engineering, or a related quantitative field (or currently pursuing final year).</li>
+                    <li>Basic theoretical understanding of machine learning algorithms and concepts (e.g., supervised learning, unsupervised learning, neural networks).</li>
+                    <li>Proficiency in at least one programming language, preferably Python.</li>
+                    <li>Familiarity with popular AI/ML frameworks/libraries (e.g., TensorFlow, PyTorch, Scikit-learn) is a significant plus.</li>
+                    <li>Strong analytical and problem-solving skills.</li>
+                    <li>Excellent communication and teamwork abilities.</li>
+                    <li>A strong passion for AI and a willingness to learn and adapt quickly.</li>
+                </ul>
+                <a href="#" class="inline-block bg-primary-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary-600 transition-colors duration-200">Send Profile to info@a-aisystems.in</a>
+            </div>
+
+            <!-- You can add more job openings here following the same structure -->
+            <!-- Example of another job opening placeholder:
+            <div class="mb-8 border-b border-neutral-200 pb-6 last:border-b-0">
+                <h3 class="text-2xl font-semibold text-primary-700 mb-2">Junior Data Scientist</h3>
+                <p class="text-neutral-600 text-sm mb-4">Location: Bengaluru, India &bull; Full-time</p>
+                <p class="mb-4 leading-relaxed text-neutral-700">
+                    We are looking for a Junior Data Scientist to join our analytics team...
+                </p>
+                <a href="#" class="inline-block bg-primary-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-primary-600 transition-colors duration-200">Apply Now</a>
+            </div>
+            -->
+        </section>
+
+        </article>
+
+
+        <!-- Sidebar -->
+        <aside class="w-full lg:w-80 p-6 bg-white rounded-lg shadow-md sidebar">
+            <!-- About the Author -->
+
+
+            <!-- Recent Posts -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-neutral-900 mb-4 border-b border-neutral-200 pb-2">Recent Posts</h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#" class="block text-primary-500 hover:underline text-base">LLM Models and RAG Applications: Part I - Introduction</a>
+                        <span class="text-xs text-neutral-500">May 28, 2025</span>
+                    </li>
+                    <li>
+                        <a href="#" class="block text-primary-500 hover:underline text-base">The Future of AI in Healthcare</a>
+                        <span class="text-xs text-neutral-500">May 27, 2025</span>
+                    </li>
+                    <li>
+                        <a href="#" class="block text-primary-500 hover:underline text-base">Getting Started with Machine Learning on the Edge</a>
+                        <span class="text-xs text-neutral-500">May 30, 2025</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold text-neutral-900 mb-4 border-b border-neutral-200 pb-2">Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-neutral-700 hover:text-primary-500 transition-colors duration-200">Artificial Intelligence (8)</a></li>
+                    <li><a href="#" class="text-neutral-700 hover:text-primary-500 transition-colors duration-200">Machine Learning (6)</a></li>
+                    <li><a href="#" class="text-neutral-700 hover:text-primary-500 transition-colors duration-200">Generative AI (4)</a></li>
+                    <li><a href="#" class="text-neutral-700 hover:text-primary-500 transition-colors duration-200">Data Science (3)</a></li>
+                </ul>
+            </div>
+
+            <!-- Tags Cloud -->
+            <div>
+                <h3 class="text-xl font-bold text-neutral-900 mb-4 border-b border-neutral-200 pb-2">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">LLM</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">RAG</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">AI</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">MachineLearning</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">DataScience</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">DeepLearning</a>
+                    <a href="#" class="bg-primary-100 text-primary-700 text-sm px-3 py-1 rounded-full hover:bg-primary-200 transition-colors duration-200">NLP</a>
                 </div>
             </div>
-        </div>
-        
-       
-        
-       
-        <div class="yeo-footer">
-            <div class="container">
-                <div class="columns">
-                    <div class="column col-3 col-sm-6">
-                        <div class="yeo-footer-content">
-                            
-                        </div>
-                    </div>
-                    <div class="column col-3 col-sm-6">
-                        <div class="yeo-footer-content">
-                           
-                        </div>
-                    </div>
-                    <div class="column col-3 col-sm-6">
-                        <div class="yeo-footer-content">
-                            
-                        </div>
-                    </div>
-                    <div class="column col-3 col-sm-6">
-                        <div class="yeo-footer-content">
-                            <h4>Copyright</h4>
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a>AAI Systems</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a>AAI System Products</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        </aside>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-neutral-900 text-neutral-300 py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 A-AI Systems Blog. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Privacy Policy</a>
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Terms of Service</a>
+                <a href="#" class="hover:text-primary-500 transition-colors duration-200">Sitemap</a>
             </div>
         </div>
+    </footer>
+
 </body>
-
 </html>
